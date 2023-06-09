@@ -1,1 +1,1 @@
-# -data-structure-study
+# data-structure-study
