@@ -76,29 +76,24 @@ function LinkedList(params) {
     current.data = data
   }
   LinkedList.prototype.removeAt = function (position) {
-    let current = this.header
+    if (position < 0 || position > this.length - 1) return false
     if (position === 0) {
       this.header = this.header.next
     } else {
+      let current = this.header
+      let prev = null
       let index = 0
-      while (index < position - 1) {
+      while (index < position) {
+        prev = current
         current = current.next
         index++
       }
-      current.next = current.next.next
+      prev.next = current.next
     }
   }
   LinkedList.prototype.remove = function (data) {
-    let current = this.header
-    let pre = null
-    let index = 0
-    while (current.data !== data) {
-      if (!current.next) return null
-      index += 1
-      pre = current
-      current = current.next
-    }
-    pre.next = current.next
+    let index = this.indexOf(data)
+    return this.removeAt(index)
   }
 }
 
@@ -108,11 +103,7 @@ linkedList.append(22)
 linkedList.append(333)
 linkedList.insert(1, 444)
 linkedList.insert(2, 555)
-linkedList.update(4, 999999)
-console.log(linkedList.get(3))
-console.log(linkedList.indexOf(333))
-linkedList.removeAt(3)
-linkedList.remove(999999)
-linkedList.append(333)
+linkedList.removeAt(2)
+linkedList.update(2, 222)
 
 console.log(linkedList.toString())
