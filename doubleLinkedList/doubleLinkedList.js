@@ -1,13 +1,17 @@
-function DoubleLinkedList(params) {
-  this.header = null
-  this.tail = null
-  this.length = 0
-  function Node(data) {
+class Node {
+  constructor(data) {
     this.data = data
     this.next = null
     this.prev = null
   }
-  DoubleLinkedList.prototype.append = function (data) {
+}
+export default class DoubleLinkedList {
+  constructor() {
+    this.length = 0
+    this.head = null
+    this.tail = null
+  }
+  append(data) {
     let node = new Node(data)
     if (!this.header) {
       this.header = node
@@ -19,7 +23,7 @@ function DoubleLinkedList(params) {
     }
     this.length += 1
   }
-  DoubleLinkedList.prototype.insert = function (position, data) {
+  insert(position, data) {
     if (position < 0 || position > this.length) return false
     let node = new Node(data)
     if (this.length === 0) {
@@ -61,7 +65,7 @@ function DoubleLinkedList(params) {
     }
     this.length += 1
   }
-  DoubleLinkedList.prototype.get = function (position) {
+  get(position) {
     if (position < 0 || position >= this.length) return null
     let current
     if (position <= this.length / 2) {
@@ -83,7 +87,7 @@ function DoubleLinkedList(params) {
 
     return current.data
   }
-  DoubleLinkedList.prototype.indexOf = function (data) {
+  indexOf(data) {
     let current = this.header
     let index = 0
     while (current.data !== data) {
@@ -93,7 +97,7 @@ function DoubleLinkedList(params) {
     }
     return index
   }
-  DoubleLinkedList.prototype.update = function (position, data) {
+  update(position, data) {
     if (position < 0 || position > this.length - 1) return false
     let current = this.header
     let index = 0
@@ -103,7 +107,7 @@ function DoubleLinkedList(params) {
     }
     current.data = data
   }
-  DoubleLinkedList.prototype.removeAt = function (position) {
+  removeAt(position) {
     if (position < 0 || position > this.length - 1) return false
     let current = this.header
     if (this.length === 1) {
@@ -129,11 +133,11 @@ function DoubleLinkedList(params) {
     this.length += 1
     return current.data
   }
-  DoubleLinkedList.prototype.remove = function (data) {
+  remove(data) {
     let index = this.indexOf(data)
     return this.removeAt(index)
   }
-  DoubleLinkedList.prototype.forwardString = function () {
+  forwardString() {
     let str = ''
     let current = this.tail
     while (current) {
@@ -142,7 +146,7 @@ function DoubleLinkedList(params) {
     }
     return str
   }
-  DoubleLinkedList.prototype.backwardString = function () {
+  backwardString() {
     let str = ''
     let current = this.header
     while (current) {
@@ -152,14 +156,3 @@ function DoubleLinkedList(params) {
     return str
   }
 }
-let doubleLinkedList = new DoubleLinkedList()
-doubleLinkedList.append(1)
-doubleLinkedList.append(22)
-doubleLinkedList.append(333)
-doubleLinkedList.insert(3, 4444)
-doubleLinkedList.update(0, 9999)
-doubleLinkedList.remove(9999)
-console.log(doubleLinkedList.get(3))
-console.log(doubleLinkedList.indexOf(22))
-console.log(doubleLinkedList.backwardString())
-console.log(doubleLinkedList.forwardString())

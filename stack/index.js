@@ -1,39 +1,20 @@
-// 栈结构的实现
-function Stack() {
-  this.items = []
-}
-Stack.prototype.push = function (val) {
-  this.items.push(val)
-}
-Stack.prototype.pop = function () {
-  return this.items.pop()
-}
-Stack.prototype.peek = function () {
-  return this.items[this.items.length - 1]
-}
-Stack.prototype.isEmpty = function () {
-  return this.items.length ? false : true
-}
-Stack.prototype.size = function () {
-  return this.items.length
-}
-Stack.prototype.toString = function () {
-  return this.items.toString()
-}
-let s = new Stack()
+import Stack, { decToBin } from './stack.js'
+const stack = new Stack()
 
-//十进制转二进制
-function decToBin(params) {
-  while (params > 0) {
-    s.push(params % 2)
-    params = Math.floor(params / 2)
-  }
-  let bin = ''
-  console.log(s.isEmpty)
-  while (!s.isEmpty()) {
-    bin += String(s.pop())
-  }
-  return bin
-}
+// push() 测试
+stack.push(1)
+stack.push(2)
+stack.push(3)
+console.log(stack.items)
 
-console.log(decToBin(4))
+console.log(stack.pop())
+console.log(stack.peek())
+
+console.log(stack.isEmpty())
+
+console.log(stack.size())
+
+console.log(stack.toString())
+
+console.log(decToBin(100))
+console.log(decToBin(88))

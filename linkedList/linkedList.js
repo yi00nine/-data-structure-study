@@ -1,11 +1,16 @@
-function LinkedList(params) {
-  this.head = null
-  this.length = 0
-  function Node(data) {
+class Node {
+  constructor(data) {
     this.data = data
     this.next = null
   }
-  LinkedList.prototype.append = function (data) {
+}
+
+export default class LinkedList {
+  constructor() {
+    this.length = 0
+    this.head = null
+  }
+  append(data) {
     let node = new Node(data)
     if (!this.header) {
       this.header = node
@@ -18,7 +23,7 @@ function LinkedList(params) {
     }
     this.length += 1
   }
-  LinkedList.prototype.toString = function () {
+  toString() {
     let str = ''
     let current = this.header
     while (current) {
@@ -27,7 +32,7 @@ function LinkedList(params) {
     }
     return str
   }
-  LinkedList.prototype.insert = function (position, data) {
+  insert(position, data) {
     if (position < 0 || position > this.length) return false
     let node = new Node(data)
     if (position === 0) {
@@ -45,7 +50,7 @@ function LinkedList(params) {
     }
     this.length += 1
   }
-  LinkedList.prototype.get = function (position) {
+  get(position) {
     if (position < 0 || position >= this.length) return null
     let current = this.header
     let index = 0
@@ -55,7 +60,7 @@ function LinkedList(params) {
     }
     return current.data
   }
-  LinkedList.prototype.indexOf = function (data) {
+  indexOf(data) {
     let current = this.header
     let index = 0
     while (current.data !== data) {
@@ -65,7 +70,7 @@ function LinkedList(params) {
     }
     return index
   }
-  LinkedList.prototype.update = function (position, data) {
+  update(position, data) {
     if (position < 0 || position > this.length - 1) return false
     let current = this.header
     let index = 0
@@ -75,7 +80,7 @@ function LinkedList(params) {
     }
     current.data = data
   }
-  LinkedList.prototype.removeAt = function (position) {
+  removeAt(position) {
     if (position < 0 || position > this.length - 1) return false
     if (position === 0) {
       this.header = this.header.next
@@ -91,19 +96,8 @@ function LinkedList(params) {
       prev.next = current.next
     }
   }
-  LinkedList.prototype.remove = function (data) {
+  remove(data) {
     let index = this.indexOf(data)
     return this.removeAt(index)
   }
 }
-
-let linkedList = new LinkedList()
-linkedList.append(1)
-linkedList.append(22)
-linkedList.append(333)
-linkedList.insert(1, 444)
-linkedList.insert(2, 555)
-linkedList.removeAt(2)
-linkedList.update(2, 222)
-
-console.log(linkedList.toString())
