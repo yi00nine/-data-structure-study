@@ -1,0 +1,13 @@
+import { HashTable } from './hashTable.js'
+const hashTable = new HashTable()
+hashTable.put('name', 'name')
+hashTable.put('age', 18)
+hashTable.put('height', 178)
+hashTable.put('email', 'email')
+hashTable.put('address', 'china')
+hashTable.put('qwe', 'qwe')
+console.log(hashTable)
+console.log(hashTable.get('name'))
+hashTable.remove('address')
+hashTable.remove('qwe')
+console.log(hashTable)
